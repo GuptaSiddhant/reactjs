@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { setRootCSS } from "./theme";
+import { setRootCSS } from "./app/theme";
 
 const initState = {
-  theme: "light"
+  theme: "light",
+  info: {},
+  projects: []
 };
 
 const reducer = (state, action) => {
@@ -10,6 +12,10 @@ const reducer = (state, action) => {
     case "themeSwitch":
       setRootCSS(action.payload);
       return { ...state, theme: action.payload };
+    case "fetchNewProject":
+      return { ...state, projects: action.payload };
+    case "updateInfo":
+      return { ...state, info: action.payload };
     default:
       return state;
   }
